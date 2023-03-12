@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse # если текст страницы прописывать ниже, без файлов штмл
 from .models import Task
+from.forms import TaskForm
 
 def index(request):
     task = Task.objects.order_by('-id')
@@ -12,4 +13,9 @@ def about(request):
 
 
 def create(request):
+    form = TaskForm()
+    context = {
+        'form':form
+    }
     return render(request, 'create.html')
+
